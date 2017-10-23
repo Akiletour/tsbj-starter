@@ -1,0 +1,35 @@
+{
+  "name": "tsbj-starter",
+  "version": "1.0.0",
+  "description": "Twig, SCSS, Bootstrap & jQuery Starter project",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^7.1.6",
+    "concurrently": "^3.5.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-twig": "^1.1.1",
+    "jshint": "^2.9.5",
+    "lite-server": "^2.3.0",
+    "mocha": "^4.0.1",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.12.1",
+    "postcss": "^6.0.13",
+    "twig": "^1.10.5",
+    "uglify-js": "^3.1.5"
+  },
+  "scripts": {
+    "start": "concurrently -k \"npm run dev\" \"npm run watch:css\" \"npm run watch:template\"",
+    "dev": "lite-server",
+    "build-js": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o public/js/app.js",
+    "prebuild:css": "node-sass --include-path src/scss src/scss/main.scss public/css/style.css",
+    "build:css": "mkdir -p public/css && postcss --use autoprefixer -b 'last 2 versions' < public/css/style.css | postcss --use cssnano > public/css/style.min.css",
+    "watch:css": "nodemon -e scss -x \"npm run build:css\"",
+    "watch:template": "gulp"
+  },
+  "dependencies": {
+    "cssnano": "^3.10.0",
+    "postcss-cli": "^4.1.1"
+  }
+}
