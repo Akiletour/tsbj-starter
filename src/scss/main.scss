@@ -1,3 +1,14 @@
-body {
-  background: red;
-}
+// Mixins
+@import "mixins/theme-variables";
+
+// Libraries
+@import "bootstrap";
+
+// Layouts
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/common";
+
+// Components
+
+// Modules

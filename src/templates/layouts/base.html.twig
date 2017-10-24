@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    {% block body %}{% endblock %}
+    {% include 'header.html.twig' %}
+    <div class="site-content">
+        {% block body %}{% endblock %}
+    </div>
+    {% include 'footer.html.twig' %}
 </body>
 </html>
