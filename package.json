@@ -6,32 +6,27 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.1.6",
+    "bootstrap": "4.0.0-beta.2",
     "concurrently": "^3.5.0",
-    "gulp": "^3.9.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-twig": "^1.1.1",
-    "jshint": "^2.9.5",
+    "cssnano": "^3.10.0",
     "lite-server": "^2.3.0",
-    "mocha": "^4.0.1",
     "node-sass": "^4.5.3",
     "nodemon": "^1.12.1",
     "postcss": "^6.0.13",
-    "twig": "^1.10.5",
+    "postcss-cli": "^4.1.1",
+    "twig-cli-tmpl": "^1.0.0",
     "uglify-js": "^3.1.5"
   },
   "scripts": {
-    "start": "concurrently -k \"npm run dev\" \"npm run watch:css\" \"npm run watch:template\"",
+    "start": "concurrently -k \"npm run dev\" \"npm run watch:css\" \"npm run watch:html\"",
     "dev": "lite-server",
+
     "build-js": "mkdir -p dist/js && uglifyjs src/js/*.js -m -o public/js/app.js",
+
     "prebuild:css": "node-sass --include-path src/scss --include-path ./node_modules/bootstrap/scss src/scss/main.scss public/css/style.css",
     "build:css": "mkdir -p public/css && postcss --use autoprefixer -b 'last 2 versions' < public/css/style.css | postcss --use cssnano > public/css/style.min.css",
     "watch:css": "nodemon -e scss -x \"npm run build:css\"",
-    "watch:template": "gulp"
-  },
-  "dependencies": {
-    "bootstrap": "4.0.0-beta.2",
-    "cssnano": "^3.10.0",
-    "postcss-cli": "^4.1.1",
-    "twig-includes-cli": "^1.0.5"
+
+    "watch:html": "nodemon -e twig -x \"twig-cli \"src/templates/*.html.twig\" -b src/templates/ -o public/\""
   }
 }
